@@ -23,11 +23,11 @@ Shortly, the function
 
 The input image
 
-![alt text](https://github.com/aikkala/graph-digitization/example/example_input.jpg "Example input")
+![alt text](https://github.com/aikkala/graph-digitization/blob/master/example/example_input.jpg "Example input")
 
 The outputs
 
-![alt text](https://github.com/aikkala/graph-digitization/example/example_output1.png "Example output1")
+![alt text](https://github.com/aikkala/graph-digitization/blob/master/example/example_output1.png "Example output1")
 
-![alt text](https://github.com/aikkala/graph-digitization/example/example_output2.png "Example output2")
+![alt text](https://github.com/aikkala/graph-digitization/blob/master/example/example_output2.png "Example output2")
 
