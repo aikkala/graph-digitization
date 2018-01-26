@@ -31,3 +31,6 @@ The outputs
 
 ![alt text](https://github.com/aikkala/graph-digitization/blob/master/example/example_output2.png "Example output2")
 
+
+## Notes
+The algorithm is not particularly robust: it is based on some heuristics, and is sensitive to parameter tuning. 
