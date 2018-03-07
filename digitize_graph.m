@@ -1,6 +1,12 @@
-% NOTE: Image should be in some image format (jpg, png, gif), and in
-% correct orientation
-function digitize_graph(path_to_image)
+function y_points = digitize_graph(path_to_image, x_points)
+% DIGITIZE_GRAPH Digitize a graph.
+%   DIGITIZE_GRAPH(PATH_TO_IMAGE) digitizes a graph in the given path. Note
+%   that the given file must be in some image format (e.g. jpg, png, gif),
+%   and in correct orientation.
+%
+%   Y_POINTS = DIGITIZE_GRAPH(PATH_TO_IMAGE, X_POINTS) returns also the
+%   digitized function's values at points X_POINTS. Note that X_POINTS must
+%   be in range [0,1].
 
 image_size = [640, 860];
 
@@ -112,6 +118,12 @@ y_interp = feval(curve,x_interp);
 figure, plot(x_interp, y_interp);
 axis([0,1,0,1]);
 
+if nargin > 1
+    if max(x_points) > 1 || min(x_points) < 0
+        error('Given x_points parameter must have points inside range [0,1]');
+    end
+    y_points = feval(curve, x_points);
+end
 end
 
 % Transform coordinates from image's frame to graph's frame
