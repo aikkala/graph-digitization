@@ -66,10 +66,25 @@ for idx = 1:size(i,1)
      % Check the distances; points must be far enough from the axes
      if abs(dist1) < 5 || abs(dist2) < 5 || abs(dist3) < 5 || abs(dist4) < 5
          continue;
-     elseif dist1 > 0 || dist2 < 0 || dist3 > 0 || dist4 < 0
+     % The points must also be inside the defined lines/equations
+     elseif dist1 > 0 || dist4 < 0
          continue;
      end
      
+     % Note: eq2 and eq3 must be treated differently when A is positive or
+     % negative
+     if strcmp(eq2.type, 'y') && eq2.A < 0 && dist2 > 0
+         continue;
+     elseif (strcmp(eq2.type, 'x') || eq2.A >= 0) && dist2 < 0
+         continue;
+     end
+
+     if strcmp(eq3.type, 'y') && eq3.A < 0 && dist3 < 0
+         continue;
+     elseif (strcmp(eq3.type, 'x') || eq3.A >= 0) && dist3 > 0
+         continue;
+     end
+
      img_valid_points(i(idx),j(idx)) = 1;
 end
 
@@ -199,8 +214,8 @@ lines = houghlines(B,T,R,P,'FillGap',50,'MinLength',400);
 lengths = zeros(1, length(lines));
 masspoints = zeros(2, length(lines));
 for k = 1:length(lines)
-%     xy = [lines(k).point1; lines(k).point2];
-%     plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','green');
+%    xy = [lines(k).point1; lines(k).point2];
+%    plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','green');
     
     % Calculate length
     len = norm(lines(k).point1 - lines(k).point2);
